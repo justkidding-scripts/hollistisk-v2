@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wellness Tracker</string>
+    <string name="wellness_welcome">Velkommen til din wellness journey!</string>
+    <string name="meditation_guide">Find ro og balance</string>
+    <string name="habit_tracker">Track dine sunde vaner</string>
+</resources>

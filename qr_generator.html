@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Code Generator - Wellness</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        #qrcode { margin: 20px auto; }
+        input { padding: 10px; width: 400px; margin: 10px; }
+        button { padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🧘‍♀️ Wellness QR Generator</h1>
+    <input type="text" id="url" placeholder="Enter URL" value="https://raw.githubusercontent.com/Jeki1234121/hollistisk-v2/main/legitimate_landing.html">
+    <br>
+    <button onclick="generateQR()">Generate QR Code</button>
+    <br>
+    <div id="qrcode"></div>
+    <p id="instructions" style="display: none;">
+        Print og distribuer fysisk!<br>
+        QR codes bypass alle browser warnings 📱
+    </p>
+    
+    <script>
+        function generateQR() {
+            const url = document.getElementById('url').value;
+            const qrContainer = document.getElementById('qrcode');
+            qrContainer.innerHTML = '';
+            
+            QRCode.toCanvas(qrContainer, url, {
+                width: 300,
+                margin: 2,
+                color: {
+                    dark: '#000000',
+                    light: '#FFFFFF'
+                }
+            }, function(err) {
+                if (!err) {
+                    document.getElementById('instructions').style.display = 'block';
+                }
+            });
+        }
+        
+        // Generate initial QR
+        generateQR();
+    </script>
+</body>
+</html>

