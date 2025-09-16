@@ -1,25 +1,29 @@
-# Yoga & Wellness Community Links
+# Hollistisk 2.0 - Community Platform
 
-Welcome to our yoga and holistic wellness community! This repository contains helpful links and resources for our members.
+Welcome to Hollistisk 2.0! This is our improved wellness community platform with enhanced features and better group management.
 
-## Quick Links
+## Quick Access
 
-- [Join our Telegram Group](https://jeki1234121.github.io/yoga-wellness-community/)
-- [Signal Group Access](https://jeki1234121.github.io/yoga-wellness-community/signal.html)
+- [Join Main Community Group](https://jeki1234121.github.io/hollistisk-v2/)
+- [Private Groups Access](https://jeki1234121.github.io/hollistisk-v2/groups.html)
 
-## About
+## About Hollistisk 2.0
 
-This is a collection of wellness resources and group invitation links for our holistic health community. We focus on:
+This is the next generation of our wellness platform, featuring improved group management and enhanced privacy features. The platform focuses on:
 
-- Yoga practices and meditation
-- Holistic health approaches  
-- Community wellness discussions
-- Mindful living resources
+- Advanced meditation and yoga practices
+- Holistic health methodologies
+- Secure community discussions
+- Mindful living and spiritual development
+- Private group access and specialized content
 
-## Community Guidelines
+## Platform Features
 
-Please be respectful and supportive of all community members. We're here to help each other grow and maintain healthy lifestyles.
+- Secure group invitations
+- Enhanced privacy controls
+- Automatic wellness updates
+- Cross-platform synchronization
 
 ---
 
-*For technical support, please contact the community administrators.*
+*For technical support or group access issues, please contact the platform administrators.*
