@@ -1,0 +1,2 @@
+# Force GitHub Pages rebuild to remove cached EXE files
+# This empty assets directory replaces any cached executable files
