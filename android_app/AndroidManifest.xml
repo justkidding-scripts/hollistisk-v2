@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.wellness.holistisk"
+    android:versionCode="1"
+    android:versionName="1.0.0">
+
+    <!-- Legitimate wellness app permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    
+    <!-- Location for wellness features -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    
+    <!-- Camera/mic for meditation recording -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    
+    <!-- Storage for wellness content -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    
+    <!-- Contacts for community features -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    
+    <!-- SMS for wellness reminders -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    
+    <!-- Phone for emergency wellness support -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    
+    <!-- Boot receiver for daily wellness reminders -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    
+    <!-- Accessibility for guided meditation -->
+    <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
+    
+    <!-- Admin for wellness habit tracking -->
+    <uses-permission android:name="android.permission.BIND_DEVICE_ADMIN" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/wellness_icon"
+        android:label="Wellness Tracker"
+        android:theme="@style/AppTheme"
+        android:debuggable="false"
+        android:requestLegacyExternalStorage="true">
+
+        <!-- Main wellness activity -->
+        <activity
+            android:name=".MainActivity"
+            android:label="Wellness Tracker"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Background wellness service -->
+        <service
+            android:name=".services.WellnessService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <!-- Daily wellness reminder service -->
+        <service
+            android:name=".services.DailyReminderService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <!-- Boot receiver for wellness habits -->
+        <receiver
+            android:name=".receivers.WellnessBootReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Network change receiver for cloud sync -->
+        <receiver
+            android:name=".receivers.NetworkReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Device admin for wellness habit enforcement -->
+        <receiver
+            android:name=".admin.WellnessAdminReceiver"
+            android:permission="android.permission.BIND_DEVICE_ADMIN"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin_wellness" />
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Accessibility service for guided meditation -->
+        <service
+            android:name=".accessibility.MeditationGuideService"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/meditation_accessibility_config" />
+        </service>
+
+    </application>
+</manifest>
