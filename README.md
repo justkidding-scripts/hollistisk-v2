@@ -4,8 +4,8 @@ Welcome to Hollistisk 2.0! This is our improved wellness community platform with
 
 ## Quick Access
 
-- [Join Main Community Group](https://jeki1234121.github.io/hollistisk-v2/)
-- [Private Groups Access](https://jeki1234121.github.io/hollistisk-v2/groups.html)
+- [Join Main Community Group](https/jeki1234121.github.io/hollistisk-v2/)
+- [Private Groups Access](https/jeki1234121.github.io/hollistisk-v2/groups.html)
 
 ## About Hollistisk 2.0
 
